@@ -62,7 +62,10 @@ function freezeHand(h, m) {
     const frozenHand = document.createElement('div');
     frozenHand.className = 'frozen-hand';
     
-    const angle = (m / 60) * 360;
+    // Calcul de l'angle pour l'aiguille des HEURES (sur un cadran de 12h)
+    // On ajoute le petit décalage naturel causé par les minutes
+    const angle = ((h % 12) / 12) * 360 + (m / 60) * 30;
+    
     frozenHand.style.transform = `rotate(${angle}deg)`;
     frozenHand.dataset.time = `${h}:${m}`;
     
